@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Lab3</title>
+
+        <style type="text/css">
+            body {
+                background: #FFE4B5
+            }
+            section {
+                background: black;
+                color: white;
+                border-radius: 1em;
+                padding: 1em;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-right: -50%;
+                transform: translate(-50%, -50%)
+            }
+            .submit-button{
+                margin-top: 20px;
+                border-radius: 10px;
+                border: 2px solid #9370DB;
+                background: #FFE4B5;
+                font-family: cursive;
+                cursor: pointer;
+            }
+            .submit-button:hover{
+                background: #9370DB;
+                color: white;
+            }
+        </style>
+    </h:head>
+    <h:body style="text-align: center">
+        <div style="font-family: monospace; font-size: 40px;">
+              Максимова Мария P3210 Вариант 10999
+          </div>
+          <br/>
+          <h:form style="margin: 0 auto; padding: 1%; width: 30%">
+              <h3>Цифровые часы</h3>
+              <p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server" autoSync="true" syncInterval="10000" />
+              <h3>Аналого-цифровые часы</h3>
+              <p:clock displayMode="analog" mode="server" autoSync="true" syncInterval="10000"/>
+              <p:clock displayMode="digital" pattern="dd.MM.yyyy" mode="server" autoSync="true" syncInterval="10000"/>
+          </h:form>
+          <h:form>
+              <p:button  class="submit-button" outcome="to_main" value="Начать тестировать лабораторную" icon="pi" />
+          </h:form>
+      </h:body>
+  </html>

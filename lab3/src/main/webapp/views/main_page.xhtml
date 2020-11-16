@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jsp="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Lab3</title>
+        <style type="text/css">
+            body{
+                background: #FFE4B5
+            }
+            #chart{
+
+                float: right;
+                margin-right: 10px;
+
+            }
+            .submit-button{
+                margin-top: 20px;
+                border-radius: 10px;
+                border: 2px solid #9370DB;
+                background: #FFE4B5;
+                font-family: cursive;
+                cursor: pointer;
+            }
+            .submit-button:hover{
+                background: #9370DB;
+                color: white;
+            }
+        </style>
+    </h:head>
+
+    <h:body style="text-align: center">
+        <div style="font-family: monospace; font-size: 40px;">
+            Максимова Мария P3210 Вариант 10999
+        </div>
+        <div id="chart" style="width: 60vw; margin: 0 auto;">
+        </div>
+        <h:form>
+            <h2>Введите координату X (-5 .. 3)</h2>
+                <p:inputNumber id="input1" onchange="setX()"
+                   value="#{pointDateBean.newPoint.x}"
+                   decimalSeparator="."
+                   minValue="-5" maxValue="3"
+                   decimalPlaces="2"
+                   autocomplete="off"
+                   thousandSeparator="false"
+                   required="true"/>
+                <h:inputHidden id="x" value="#{pointDateBean.newPoint.x}" />
+
+            <h2>Выберите координату Y (-2 .. 2)</h2>
+                <p:spinner id="input2" value="#{pointDateBean.newPoint.y}" onchange="setY()" min="-2" max="2"/>
+                <h:inputHidden id="y" value="#{pointDateBean.newPoint.y}" />
+
+            <h2>Выберите радиус</h2>
+                <h:selectOneRadio id="R" required="true" value="#{pointDateBean.newPoint.r}" onchange="draw(value)" style="margin-left: auto;
+            margin-right: auto">
+                    <f:selectItem itemLabel="1" itemValue="1" id="R1"/>
+                    <f:selectItem itemLabel="2" itemValue="2" id="R2"/>
+                    <f:selectItem itemLabel="3" itemValue="3" id="R3"/>
+                    <f:selectItem itemLabel="4" itemValue="4" id="R4"/>
+                    <f:selectItem itemLabel="5" itemValue="5" id="R5"/>
+                </h:selectOneRadio>
+                <h:inputHidden id="r" value="#{pointDateBean.newPoint.r}"/>
+
+                <p:commandButton id="out_button"
+                                 class="submit-button"
+                                 value="Отправить"
+                                 ajax="false"
+                                 action="#{pointDateBean.doCode}"/>
+        </h:form>
+        <h:form>
+            <p:button class="submit-button" outcome="to_index" value="Вернуться к часам" icon="pi"/>
+        </h:form>
+        <h:panelGroup id="entriesTable">
+            <h:dataTable id="table_out_data" value="#{pointDateBean.pointsTable}" var="point"
+                         style="width: 100%; border-width:2px; margin: 0 auto; border-color:black; border-style:solid;">
+                <h:column>
+                    <f:facet name="header">X</f:facet>
+                    #{point.x}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Y</f:facet>
+                    #{point.y}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">R</f:facet>
+                    #{point.r}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Result</f:facet>
+                    #{point.res}
+                </h:column>
+            </h:dataTable>
+        </h:panelGroup>
+        <h:outputScript library="JS_DRA" name="draw.js"/>
+    </h:body>
+</html>
